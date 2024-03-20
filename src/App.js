@@ -7,6 +7,8 @@ function App() {
   const [listOfCoins, setListOfCoins] = useState([]);
   const [searchWord, setSearchWord] = useState("");
 
+  // &limit=250
+
   useEffect(() => {
     Axios.get("https://api.coinstats.app/public/v1/coins?skip=0").then(
       (response) => {
@@ -18,15 +20,17 @@ function App() {
   const filteredCoins = listOfCoins.filter((coin) => {
     return coin.name.toLowerCase().includes(searchWord.toLowerCase());
   });
+  
 
   return (
     <div className="App">
       <div className="cryptoHeader">
         <input
           type="text"
-          placeholder="Bitcoin..."
+          placeholder="Search crypto name..."
           onChange={(event) => {
             setSearchWord(event.target.value);
+            
           }}
         />
       </div>
